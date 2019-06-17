@@ -4,7 +4,7 @@ Inputs:
 Name, Manufacturer, Year, ID
 
 Features:
-View all records
+View all items
 Search an entry
 Add entry
 Update and delete entries
