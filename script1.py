@@ -1,3 +1,4 @@
+# The front end
 from tkinter import *
 
 window = Tk()
