@@ -44,7 +44,30 @@ def search(name="", manufacturer="", serial="", year=""):
     return rows
 
 
+# Delete function
+def delete(id):
+    conn = sqlite3.connect("store.db")
+    cur = conn.cursor()
+    # Remember to include the last comma
+    cur.execute("DELETE FROM item WHERE id=?", (id,))
+    conn.commit()
+    conn.close()
+
+
+# Update function
+def update(id, name, manufacturer, serial, year):
+    conn = sqlite3.connect("store.db")
+    cur = conn.cursor()
+    cur.execute("UPDATE item SET name=?, manufacturer=?, serial=?, year=? WHERE id=?",
+                (name, manufacturer, serial, year, id))
+    conn.commit()
+    conn.close()
+
+
 # Call the connect function so that it can always execute on the frontend script
 connect()
-# insert('Transcend', 'China', '00100', 2001)
+# insert('Laptop', 'Dell', '00500', 2008)
+# delete(2)
+# print(search(manufacturer="Japan"))
+# update(4, 'Laptop', 'HP', '00300', 2007)
 print(view())
