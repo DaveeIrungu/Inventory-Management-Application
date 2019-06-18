@@ -36,7 +36,7 @@ list1.grid(row=2, column=0, rowspan=6, columnspan=2)
 sb1 = Scrollbar(window)
 sb1.grid(row=4, column=2, rowspan=6)
 
-# Configure listbox and scrollbar
+# Configure the listbox and scrollbar
 list1.configure(yscrollcommand=sb1.set)
 sb1.configure(command=list1.yview)
 
