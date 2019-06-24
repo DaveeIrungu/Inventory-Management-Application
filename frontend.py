@@ -1,6 +1,8 @@
 # The front end
 from tkinter import *
-import backend
+from backend import Database
+
+database = Database("store.db")
 
 
 def get_selected_row(event):
@@ -25,7 +27,7 @@ def get_selected_row(event):
 def view_onClick():
     # Before executing, first clear the listbox to eliminate redundancy
     list1.delete(0, END)
-    for row in backend.view():
+    for row in database.view():
         # The end argument ensures that every new row is put on a new line in the listbox during iteration
         list1.insert(END, row)
 
@@ -34,24 +36,24 @@ def search_onClick():
     # Clear the listbox before executing
     list1.delete(0, END)
     # .get() captures the input entered in the entry widgets
-    for row in backend.search(name_text.get(), manufacturer_text.get(), serial_text.get(), year_text.get()):
+    for row in database.search(name_text.get(), manufacturer_text.get(), serial_text.get(), year_text.get()):
         # Insert all the values in the listbox
         list1.insert(END, row)
 
 
 def insert_onCLick():
     list1.delete(0, END)
-    backend.insert(name_text.get(), manufacturer_text.get(), serial_text.get(), year_text.get())
+    database.insert(name_text.get(), manufacturer_text.get(), serial_text.get(), year_text.get())
     # Display these values on the listbox
     list1.insert(END, (name_text.get(), manufacturer_text.get(), serial_text.get(), year_text.get()))
 
 
 def delete_onClick():
-    backend.delete(selected_tuple[0])
+    database.delete(selected_tuple[0])
 
 
 def update_onClick():
-    backend.update(selected_tuple[0], name_text.get(), manufacturer_text.get(), serial_text.get(), year_text.get())
+    database.update(selected_tuple[0], name_text.get(), manufacturer_text.get(), serial_text.get(), year_text.get())
 
 
 window = Tk()
